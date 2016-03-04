@@ -264,11 +264,11 @@ void PdfViewer::slotOpenFile()
 {
 
 	QString style = QString(
-				"QWidget#scrollAreaWidgetContents { border: 1px solid #7F8084; } \
-				QDialog { border:none; } \
-				QPushButton#okButton, QPushButton#cancelButton { height: 12px; padding: 3px; } \
-				QPushButton, QLabel { font-size: 12px; } \
-				LabelButton { background: #0080FF; border: 1px solid #000000; padding: 5px; margin: 3px; } ");
+		"QWidget#scrollAreaWidgetContents { border: 1px solid #7F8084; } \
+		QDialog { border:none; } \
+		QPushButton#okButton, QPushButton#cancelButton { height: 18px; padding: 3px; } \
+		QPushButton, QLabel { font-size: 12px; } \
+		LabelButton { background: #0080FF; border: 1px solid #000000; padding: 5px; margin: 3px; } ");
 
 	QDBusPendingReply<int> reply = fileBrowser->getOpenFileName("/", QStringList(), QStringList() << "*.pdf",
 													   "Open PDF Document:", QStringList(), style);
