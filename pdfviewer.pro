@@ -25,7 +25,8 @@ HEADERS += abstractinfodock.h \
            toc.h \
            viewer.h \
     flickcharm.h \
-    filebrowserinterface.h
+    filebrowserinterface.h \
+    version.h
 SOURCES += abstractinfodock.cpp \
            documentobserver.cpp \
            embeddedfiles.cpp \

@@ -17,13 +17,15 @@
  */
 
 #include "viewer.h"
-
+#include "version.h"
 #include <QtGui/QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     const QStringList args = QCoreApplication::arguments();
+    app.setApplicationVersion(PDFVIEWER_VERSION);
+
     PdfViewer *viewer = new PdfViewer();
 	viewer->setWindowFlags(Qt::FramelessWindowHint);
 	viewer->showFullScreen();
