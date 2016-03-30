@@ -6,5 +6,6 @@
         <file>icons/fit.png</file>
         <file>icons/open.png</file>
         <file>icons/toc.png</file>
+        <file>icons/license.png</file>
     </qresource>
 </RCC>

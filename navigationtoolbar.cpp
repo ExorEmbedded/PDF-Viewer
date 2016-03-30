@@ -26,7 +26,11 @@
 #include <QtGui/QComboBox>
 #include <QtGui/QLayout>
 #include <QDebug>
+#include <QDialog>
 #include <QStandardItemModel>
+#include <QTextEdit>
+#include <QScrollArea>
+#include <QPushButton>
 
 NavigationToolBar::NavigationToolBar(PdfViewer *parent)
     : QToolBar((QWidget*)parent)
@@ -103,6 +107,26 @@ NavigationToolBar::NavigationToolBar(PdfViewer *parent)
 	addWidget(spacer);
 	m_openAct = addAction(QIcon(QPixmap(":/icons/open.png")), tr("Open pdf"), parent, SLOT(slotOpenFile()));
 	widgetForAction(m_openAct)->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
+
+	QDialog* dialog = new QDialog(this);
+	dialog->setFixedSize(320,240);
+	dialog->setWindowTitle("License");
+	dialog->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+	QTextEdit* te= new QTextEdit();
+	te->setReadOnly(true);
+	te->setText(GPL3_LICENSE);
+	flickCharm->activateOn(te);
+	QPushButton* okButton = new QPushButton("OK", dialog);
+	okButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+	connect(okButton, SIGNAL(clicked()), dialog, SLOT(accept()));
+	QVBoxLayout* vbl = new QVBoxLayout();
+	vbl->addWidget(te);
+	vbl->addWidget(okButton);
+	dialog->setLayout(vbl);
+	vbl->setAlignment(okButton, Qt::AlignRight);
+	m_aboutAct = addAction(QIcon(QPixmap(":/icons/license.png")), tr("About"), dialog, SLOT(open()));
+	widgetForAction(m_aboutAct)->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
+
 	m_closeAct = addAction(QIcon(QPixmap(":/icons/close.png")), tr("Exit"), qApp, SLOT(closeAllWindows()));
 	widgetForAction(m_closeAct)->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
 
